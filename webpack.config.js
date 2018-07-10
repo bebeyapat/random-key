@@ -6,11 +6,11 @@ module.exports = {
 	},
 	output: {
 		filename: '[name].bundle.js',
-		path: path.resolve(__dirname, 'dist')
+		path: path.resolve(__dirname, 'docs')
 	},
 	mode: 'development',
 	devServer: {
-		contentBase: './dist',
+		contentBase: './docs',
 		host: '0.0.0.0'
 	}
 };
