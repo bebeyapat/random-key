@@ -1,6 +1,7 @@
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
 	entry: {
@@ -10,17 +11,36 @@ module.exports = {
 		new CleanWebpackPlugin(['docs']),
 		new HtmlWebpackPlugin({
 			title: 'random-key'
-		})
+		}),
+		new VueLoaderPlugin()
 	],
+	module: {
+		rules: [
+			{
+				test: /\.vue$/,
+				loader: 'vue-loader'
+			},
+			{
+				test: /\.js$/,
+				loader: 'babel-loader'
+			},
+			{
+				test: /\.css$/,
+				use: [
+					'vue-style-loader',
+					'css-loader'
+				]
+			}
+		]
+	},
 	output: {
 		filename: '[name].bundle.js',
 		path: path.resolve(__dirname, 'docs')
 	},
-	mode: 'development',
-	devtool: 'inline-source-map',
-	devServer: {
-		contentBase: './docs',
-		host: '0.0.0.0'
+	optimization: {
+		splitChunks: {
+			chunks: 'all'
+		}
 	}
 };
 

@@ -4,10 +4,11 @@
   "description": "random key generator",
   "private": true,
   "scripts": {
-    "build": "webpack",
-	"watch": "webpack --watch",
-    "start": "webpack-dev-server",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack --config webpack.prod.js",
+    "watch": "webpack --watch",
+    "start": "webpack-dev-server --config webpack.dev.js",
+    "profile": "webpack --profile --json > stats.json && webpack-bundle-analyzer -p 8080 -h 0.0.0.0 stats.json",
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -23,8 +24,18 @@
   "devDependencies": {
     "clean-webpack-plugin": "^0.1.19",
     "html-webpack-plugin": "^3.2.0",
+    "mocha": "^5.2.0",
     "webpack": "^4.15.1",
+    "webpack-bundle-analyzer": "^2.13.1",
     "webpack-cli": "^3.0.8",
-    "webpack-dev-server": "^3.1.4"
+    "webpack-dev-server": "^3.1.4",
+    "webpack-merge": "^4.1.3"
+  },
+  "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "lodash": "^4.17.10",
+    "vue": "^2.5.16",
+    "vue-loader": "^15.2.4"
   }
 }
