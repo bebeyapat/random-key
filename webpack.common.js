@@ -1,5 +1,6 @@
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
@@ -9,6 +10,7 @@ module.exports = {
 	},
 	plugins: [
 		new CleanWebpackPlugin(['docs']),
+		new FaviconsWebpackPlugin('./icon.png'),
 		new HtmlWebpackPlugin({
 			title: 'random-key'
 		}),
